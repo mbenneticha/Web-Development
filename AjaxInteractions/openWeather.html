@@ -1,0 +1,47 @@
+<!--
+/************************
+* Author: Mariam Ben-Neticha
+* Course: CS 290
+* HW Assignment: AJAX Interactions
+* Date: 5.8.16
+* File Name: openWeather.html
+* Related Files: openWeather.js
+*************************/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+  	<title>AJAX Interactions</title>
+  	<script src="openWeather.js"></script>
+  </head>
+  <body>
+  	<form>
+  	  <fieldset>
+  	  	<legend>Find your weather by City Name and Country</legend>
+  	  	<label for ="cityName"> City:
+  	  		<input type = "text" name = "cityName" id="cityName">
+  	  	</label>
+  	  	<input type = "submit" id="submitCity">
+  	  </fieldset>
+  	<h2>OR</h2>
+  	  <fieldset>
+  	  	<legend>Find your weather by Zip Code and Country</legend>
+  	  	<label for ="zipCode">Zip Code:
+  	  		<input type = "number" name = "zipCode" id="zipCode">
+  	  	</label>
+  	  	<input type = "submit" id="submitZip">
+  	  </fieldset>
+  	</form>
+  	<div>
+      <h2>Your Weather:</h2>
+      <ul>
+        <li><span>City: </span><span id="city"></span></li>
+        <li><span>Temperaure: </span><span id="temp"></span></li>
+        <li><span>Humidity: </span><span id="humidity"></span></li>
+        <li><span>Description: </span><span id="description"></span></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<div class="row"> <!-- Start "Add new exercise" Row -->
+    <div class="col-md-12">
+        <h2>Edit Exercise</h2>
+        <form class="form-inline" id="edit-form">
+            <fieldset>
+                <legend>Edit Exercise</legend>
+                <div class="form-group">
+                    <p>
+                        <label for="name">Exercise Name:</label>
+                        <input type="text" class="form-control" name="name" id="edit-name" value="{{results.name}}">
+                        
+                        <label for="reps">Repititions:</label>
+                        <input type="number" class="form-control" name="reps" id="edit-reps" value="{{results.reps}}">
+                        
+                        <label for="weight">Weight:</label>
+                        <input type="number" class="form-control" name="weight" id="edit-weight" value="{{results.weight}}">
+                    </p>
+                    <p>
+                        <label for="date">Date Completed:</label>
+                        <input type="date" class="form-control" name="date" id="edit-date" value="{{date}}">
+                        
+                        <label for="lbs">Units:</label>
+                        {{#if results.lbs}}
+                            <select name="lbs" id="edit-lbs">
+                            <option value="1" selected>lbs.</option>
+                            <option value="0">kilograms</option>
+                        {{else}}
+                            <select name="lbs" id="edit-lbs">
+                            <option value="1">lbs.</option>
+                            <option value="0" selected>kilograms</option>   
+                        {{/if}}
+                        <input hidden type="text" name="id" id="edit-id" value="{{results.id}}">
+                    </p>
+                    </select>
+                </div>
+                <p>
+                    <input type="submit" class="btn btn-primary" id="edit-submit">
+                </p>
+            </fieldset>
+        </form>
+        <input type="submit" class="btn btn-primary" id="return-home" action="../" value="Return to List">
+    </div>
+</div> <!-- End "Add new exercise" Row -->

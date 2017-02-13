@@ -1,0 +1,57 @@
+<div class="row"> <!-- Start "Add new exercise" Row -->
+    <div class="col-md-12">
+        <h1>Exercise Tracker</h1>
+        <h2>Add New Exercise</h2>
+        <form class="form-inline" id="insert-form">
+            <fieldset>
+                <legend>Add a New Exercise</legend>
+                <div class="form-group">
+                    <p>
+                        <label for="name">Exercise Name:</label>
+                        <input type="text" class="form-control" name="name" id="insert-name" placeholder="Name of exercise">
+                        <label for="reps">Repititions:</label>
+                        <input type="number" class="form-control" name="reps" id="insert-reps" placeholder="0">
+                        <label for="weight">Weight:</label>
+                        <input type="number" class="form-control" name="weight" id="insert-weight" placeholder="0">
+                    </p>
+                    <p>
+                        <label for="date">Date Completed:</label>
+                        <input type="date" class="form-control" name="date" id="insert-date">
+                        <label for="lbs">Units:</label>
+                        <select name="lbs" id="insert-lbs">
+                        <option value="1" selected>lbs.</option>
+                        <option value="0">kilograms</option>
+                    </p>
+                    </select>
+                </div>
+                <p>
+                    <input type="submit" class="btn btn-primary" id="insert-submit">
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div> <!-- End "Add new exercise" Row -->
+
+<!-- Panel to show the exercise information on success -->
+<div class="row" id="edit-panel" hidden> <!-- START output row -->
+    <div class="col-md-12">
+        <h2>Edit Exercise</h2>
+        <div id="edit-form-anchor"></div>
+    </div>
+</div> <!-- END output row -->
+
+<!-- Panel to show the exercise information on success -->
+<div class="row" id="results-panel" hidden> <!-- START output row -->
+    <div class="col-md-12">
+        <h2>Exercises</h2>
+        <div id="table-anchor"></div>
+    </div>
+</div> <!-- END output row -->
+
+
+<!-- Panel to show error message on failure -->        
+<div class="row" id="error-panel" hidden>
+    <div class="col-md-12">
+        <p class="bg-danger">There was an error: <span id="error-message"></span></p>
+    </div> <!-- END error panel -->   
+</div> <!-- END error row -->

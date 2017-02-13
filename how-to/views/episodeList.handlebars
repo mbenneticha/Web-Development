@@ -1,0 +1,99 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="http://52.25.91.135:3080/">
+                    TVMaze API Guide
+                </a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/start">Getting Started</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/showInfo">API: Show Info</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/episodeList">API: Episode Listing</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/extra">API: I Want More!</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/pretty">Wrap Up: Final Result</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/conclude">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+
+                    <div id="otherAPI">
+                        <h1 id="titleOther">API: Episode Listing</h1>
+                    </div>
+                    <div id="bodyAPI">
+                        <h3>Expanding The Search</h3>
+                        <p>
+                            Our new task is to get more information using the API. But how do we do this? Embedding! We can embed other api calls to the first call in order to get more information. More specifically, here we will embed calls in order to get the episode listings for a specific show. We'll even get the name of the main character of the show and the actor's name.
+                            <br><br>
+                            To do this, we'll need to use the <code>episodes</code> call to get a list of episodes AND the <code>cast</code> call to get  a list of the show's cast.
+                            <br><br>
+                            This is the part that's not so clear. How do I add these extra calls to the URL query? Recall our last API call looked like this: <code>http://api.tvmaze.com/singlesearch/shows?q=game%20of%20thrones</code>. To add the <code>episodes</code> call, we need to append <code>&embed=episodes</code> to the end of that API call. And to add another call in an API, the structure changes to this: <code>&embed[]=episodes&embed[]=cast</code>. The <code>embed</code> calls become arrays.
+                            <br><br>
+                            Our API call will be <code>http://api.tvmaze.com/singlesearch/shows?q=game%20of%20thrones&embed[]=episodes&embed[]=cast</code>. Towards the end of the guide, I'll give an example of combining these API requests with a form.
+                        </p>
+                        <h3>Finding What We Want from the Response</h3>
+                        <p>
+                            Similarly to our last example, we can use JSONLint to see what information the API call gives us. Or, we can see it in the console log. If you are on a Google Chrome Browser, simply right-click the mouse and click 'Inspect' on this page. Then click on the 'Console' tab. You will see an object. When you expand this object, you will see the same information that JSONLint gave us previously.
+                            <br><br>
+                            The first thing you may think when you see the JSON Object is 'Where is the episode and cast information?'. Well, remember that we embedded these to the <code>search/shows</code> call. So now, we'll find the cast and episodes under <code>_embedded</code>.
+                            <br><br>
+                            You'll also notice that both the <code>cast</code> and <cast>episodes</cast> objects are arrays. This is because we're calling for multiple sets of information. We'll have to reference these responses in a similar fashion. Here's what it may look like to get information on the 10th cast member of the show: <code>response._embedded.cast[9].person.name</code>. Remember that arrays begin at zero, so the 10th cast member will be the 9th person in the array.
+                            <br><br>
+                            Now, for this portion, we want to get a list of episodes, but there is a lot of information this API call gives us about the episodes. We can get an airdate, airstamp, and an airtime. Depending on what your needs are, including one or more of these may be beneficial. For this example, we will only use the airdate.
+                            <br><br>
+                            We also get some image urls, the episode name, episode number, runtime (or length of the episode), the season number, and a summary. We'll make use of the season and episode numbers as well as the name.
+                        </p>
+                        <h3>Making the Call</h3>
+                        <p>
+                            Let's see if we get what we wanted from this API Call.
+                            <br>
+                            <p data-height="265" data-theme-id="0" data-slug-hash="GZaXJJ" data-default-tab="js" data-user="bennemar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/bennemar/pen/GZaXJJ/">GZaXJJ</a> by Mariam (<a href="http://codepen.io/bennemar">@bennemar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <br>
+                            I've placed the Episode List Information into a table in order to get an organized, well-functional layout of the information. If you wanted to, you could add more features to the table to allow ordering of episodes in other manners, but I think having the episodes in consequential order is fitting.
+                            <br><br>
+                            Hoorah! We got what we wanted! Now, you'll never have to miss another episode of your favorite show! If we wanted to, we could add more to the table by adding a description for each episode. Or we could show less. We could remove the episode name. These are design decisions left up to the programmer. The most important point is that now, you have a very good background to making API calls. You'll be able to use many of the skills you've learned here with any API you use. 
+                        </p>
+                        <h3>Put Away The Code!</h3>
+                        <p>
+                            Now we've put together what we wanted. But we'll have to manually edit the code each time we want to look up information for a different show. So, how do we fix this problem? In the next section, we'll finalize the code we have so far. Then we'll discuss how we can use some other TVMaze API calls in a useful manner.
+                            <br><br>
+                            Meanwhile, take a look at TVMaze API and try to put together a call to get some information about an actor or actress. Then see if you can get some show-related information about them. Maybe you'll be able to put together a list of shows in which your favorite actor, or actress, stars. Now, wouldn't that be a handy tool?
+                        </p>
+                    </div>
+                    <nav>
+                      <ul class="pager">
+                        <li class="previous"><a href="http://52.25.91.135:3080/showInfo"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                        <li class="next"><a href="http://52.25.91.135:3080/extra">Next <span aria-hidden="true">&rarr;</span></a></li>
+                      </ul>
+                    </nav>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

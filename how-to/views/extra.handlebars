@@ -1,0 +1,172 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="http://52.25.91.135:3080/">
+                    TVMaze API Guide
+                </a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/start">Getting Started</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/showInfo">API: Show Info</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/episodeList">API: Episode Listing</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/extra">API: I Want More!</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/pretty">Wrap Up: Final Result</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/conclude">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+
+                    <div id="otherAPI">
+                        <h1 id="titleOther">API: I Want More!</h1>
+                    </div>
+                    <div id="bodyAPI">
+                        <h3>Making Our Code Flexible</h3>
+                        <p>
+                            You may have noticed that I stored the show name into a variable in all of the CodePen examples I've provided.
+                            <br><br><code>var show = "game of thrones"</code>
+                            <br><br>
+                            That's because it's a simple way to edit code without creating any errors. Still, doing it this way means you'll have to edit your code every time you want to look up a different show. You can avoid this by editing your code slightly now. By creating a form in your HTML file and adding the accompanying pieces into your JS file, you'll have done all the hard work. And you'll be able to enjoy it forever onwards.
+                            <br><br>
+                            Here's what the code looks like after adding a form to the HTML file and editing the JS file:
+                            <br>
+                            <p data-height="265" data-theme-id="0" data-slug-hash="BKeOmR" data-default-tab="js,result" data-user="bennemar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/bennemar/pen/BKeOmR/">BKeOmR</a> by Mariam (<a href="http://codepen.io/bennemar">@bennemar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <br>
+                            Test it out and see if it does a good job.
+                            <br><br>
+                            If you look at the JavaScript, you'll notice that we've added a line: <code>document.addEventListener('DOMContentLoaded', bindButtons)</code> and put all of our previous code inside of the function <code>bindButtons()</code>.
+                            <br><br>
+                            <code>DOMContentLoaded</code> simply tells the computer "Don't do this until all of the document's content have been loaded". Adding the function to it combines the form from the HTML document's submit button to the functionality of the <code>bindButtons</code> function. Thus, allowing the form to take the user-input, enter it into the query API, send off the API, then display the results to the user's screen.
+                            <br><br>
+                            This is the potential and the power in API's, my friends! 
+                        </p>
+                        <h3>Fulfilling the Challenge</h3>
+                        <p>
+                            If you accepted the challenge to put together a list of shows your favorite character has starred, we'll discuss some specifics now. If you have not, stay tuned to see the complexity of such a call.
+                            <br><br>
+                            So far, we've used the search features to find shows and embedded the <code>episode</code> and <code>cast</code> features to obtain more information about the show. Putting together a list of shows for a favorite actor is not quite as straight forward. In order to complete this, you will need to nest API calls. In addition, TVMaze is not very clear about how to go about attaining information when the object returned only has a <code>href</code> (or reference) to the item you need.
+                            <br><br>
+                            We'll begin with the simplist piece: seeing the object returned from an API call for a <code>people</code> search.
+                            <br><br>
+                            <b>The Request Call</b>:
+                            <div class="well well-sm">
+                            <code>
+                                var req = new XMLHttpRequest();<br>
+                                var actor = "Rachel McAdams";<br>
+                                req.open('GET', 'http://api.tvmaze.com/search/people?q=' + actor, true);
+                                //Or
+                                req.open('GET', 'http://api.tvmaze.com/search/people?q=rachel%20mcadams', true);
+                            </code>
+                            </div>
+                            <b>The Response</b>:
+                            <div class="well well-sm">
+                            <code>
+                                [{<br>
+                                    "score": 8.302409,<br>
+                                    "person": {<br>
+                                        "id": 53237,<br>
+                                        "url": "http://www.tvmaze.com/people/53237/rachel-mcadams",<br>
+                                        "name": "Rachel McAdams",<br>
+                                        "image": {<br>
+                                            "medium": "http://tvmazecdn.com/uploads/images/medium_portrait/9/23502.jpg",<br>
+                                            "original": "http://tvmazecdn.com/uploads/images/original_untouched/9/23502.jpg"<br>
+                                        },<br>
+                                        "_links": {<br>
+                                            "self": {<br>
+                                                "href": "http://api.tvmaze.com/people/53237"<br>
+                                            }
+                                        }
+                                    }
+                                }]
+                            </code>
+                            </div>
+                            We see here that the response gives us little useful information. The only pieces we'll use here are the <code>response[0].person.name</code> and <code>response[0].person.id</code>. You'll see why the id will help us in the next steps. Recall that these general searches return an array of potential matches. Since, I have not made any typos, I will use the first returned element of the array for the remainder of this example.
+                        </p>
+                        <h3>A Second API Call</h3>
+                        <p>
+                            Looking at the TVMaze Documentation, you'll learn that the people search feature cannot be combined with other calls. However, there is another call, <code>people/:id</code>, which can be combined with <code>castcredits</code> to relay an actor's show/character information.
+                            <br><br>
+                            When we try this call in combination with the first call, we'll get two objects. Here they are:
+                            <b>The Request Call</b>:
+                            <div class="well well-sm">
+                            <code>
+                                var request = new XMLHttpRequest();<br>
+                                var actorID = response[0].person.id;<br>
+                                request.open('GET', 'http://api.tvmaze.com/people/' + actorID + '/castcredits', true);
+                            </code>
+                            </div>
+                            <b>The Response</b>:
+                            <div class="well well-sm">
+                            <code>
+                                [{
+                                    "_links": {
+                                        "show": {
+                                            "href": "http://api.tvmaze.com/shows/1283"
+                                        },
+                                        "character": {
+                                            "href": "http://api.tvmaze.com/characters/92824"
+                                        }
+                                    }
+                                }, {
+                                    "_links": {
+                                        "show": {
+                                            "href": "http://api.tvmaze.com/shows/5"
+                                        },
+                                        "character": {
+                                            "href": "http://api.tvmaze.com/characters/102698"
+                                        }
+                                    }
+                                }]
+                            </code>
+                            </div>
+                            The response of this new API request leads to a dead end. All we have are reference urls. So, what's the solution. It's a minor addition to the API request. Instead of the above API, we need to send this: <code>'http://api.tvmaze.com/people/' + actorID + '/castcredits?&embed[]=show&embed[]=character'</code>.
+                            <br><br>
+                            You'll find that now, we can access a lot more information. Here's what it all looks like once it's put together. I've relayed this into a form as well, so test out an actor or actress of your choosing.
+                            <br>
+                            <p data-height="265" data-theme-id="0" data-slug-hash="pymxbY" data-default-tab="js,result" data-user="bennemar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/bennemar/pen/pymxbY/">pymxbY</a> by Mariam (<a href="http://codepen.io/bennemar">@bennemar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <br>
+                            Now you can go binge watch all the other shows your actor stars in! Reward yourself for all your hard work.
+                        </p>
+                        <h3>Almost There!</h3>
+                        <p>
+                            You've done well, so far. But lets finish up and package all of our code into a neat package. Then you'll only have to go to one place to complete any of your searches.
+                        </p>
+                    </div>
+                    <nav>
+                      <ul class="pager">
+                        <li class="previous"><a href="http://52.25.91.135:3080/episodeList"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                        <li class="next"><a href="http://52.25.91.135:3080/pretty">Next <span aria-hidden="true">&rarr;</span></a></li>
+                      </ul>
+                    </nav>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

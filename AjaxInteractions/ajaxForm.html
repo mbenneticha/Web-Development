@@ -1,0 +1,37 @@
+<!--
+/************************
+* Author: Mariam Ben-Neticha
+* Course: CS 290
+* HW Assignment: AJAX Interactions
+* Date: 5.8.16
+* File Name: ajaxForm.html
+* Related Files: ajaxForm.js
+*************************/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+  	<title>AJAX Interactions</title>
+  	<script src="ajaxForm.js"></script>
+  </head>
+  <body>
+  	<form action="http://httpbin.org/post" method="post">
+  	  <fieldset>
+  	  	<legend>Send some text here: </legend>
+  	  	<label for ="input"> Input:
+  	  		<input type = "text" name = "input" id="input">
+  	  	</label>
+  	  	<input type = "submit" id="submitText">
+  	  </fieldset>
+  	</form>
+  	<div>
+      <h2>Your Text:</h2>
+      <ul>
+        <li><span>Your input: </span><span id="userInput"></span></li>
+        <li><span>The Output: </span><span id="resultOutput"></span></li>
+      </ul>
+    </div>
+  </body>
+</html>

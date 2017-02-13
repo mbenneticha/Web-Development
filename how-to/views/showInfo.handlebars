@@ -1,0 +1,169 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="http://52.25.91.135:3080/">
+                    TVMaze API Guide
+                </a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/start">Getting Started</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/showInfo">API: Show Info</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/episodeList">API: Episode Listing</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/extra">API: I Want More!</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/pretty">Wrap Up: Final Result</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/conclude">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+
+                    <div id="otherAPI">
+                        <h1 id="titleOther">API: Show Information</h1>
+                    </div>
+                    <div id="bodyAPI">
+                        <h3>Making A Call</h3>
+                        <p>
+                            Previously, we made an API call and that call retrieved some information for us. Let's go back and break down how we made that call.<br><br>
+                            Every API provides a root API url as well as calls that can be made using that url. In the API call I provided you, <code>http://api.tvmaze.com/singlesearch/shows?q=game%20of%20thrones</code>, the root url is <code>http://api.tvmaze.com/</code> and the call is <code>singlesearch/shows?q=game%20of%20thrones</code>. Let's break down the call a little more.<br>
+                            <ul>We have:
+                                <li><code>singlesearch/shows</code> : This is a call you can find on TVMaze. It will take a show name as a query(aka. search input) and return ONE show that matches that query.</li>
+                                <li><code>?</code> : This question mark indicates that this is where the query begins.</li>
+                                <li><code>q=</code> : This 'q' is what the server will look at after the request is sent. Whatever comes after the '=' is set as the 'q'. </li>
+                                <li><code>game%20of%20thrones</code> : This is the show name. Since this show has spaces, the spaces are replaces by a '%20'. This is the show we are looking for.</li>
+                            </ul>
+                            <br>
+                            This call gives us some information about the show. Let's see what that means.
+                        </p>
+                        <h3>Understanding the Call Response</h3>
+                        <p>
+                            When we used JSONLint to call <code>http://api.tvmaze.com/singlesearch/shows?q=game%20of%20thrones</code>, we got this large bunch of text back.
+                            <br>
+                            <div class="well">
+                                {"id": 82,
+                                "url": "http://www.tvmaze.com/shows/82/game-of-thrones",
+                                "name": "Game of Thrones",
+                                "type": "Scripted",
+                                "language": "English",
+                                "genres": ["Drama", "Adventure", "Fantasy"],
+                                "status": "Running",
+                                "runtime": 60,
+                                "premiered": "2011-04-17",
+                                "schedule": {
+                                    "time": "21:00",
+                                    "days": ["Sunday"]
+                                },
+                                "rating": {
+                                    "average": 9.4
+                                },
+                                "weight": 100,
+                                "network": {
+                                    "id": 8,
+                                    "name": "HBO",
+                                    "country": {
+                                        "name": "United States",
+                                        "code": "US",
+                                        "timezone": "America/New_York"
+                                    }
+                                },
+                                "webChannel": null,
+                                "externals": {
+                                    "tvrage": 24493,
+                                    "thetvdb": 121361,
+                                    "imdb": "tt0944947"
+                                },
+                                "image": {
+                                    "medium": "http://tvmazecdn.com/uploads/images/medium_portrait/53/132622.jpg",
+                                    "original": "http://tvmazecdn.com/uploads/images/original_untouched/53/132622.jpg"
+                                },
+                                "summary": "<p>Based on the bestselling book series A Song of Ice and Fire by George R.R. Martin, this sprawling new HBO drama is set in a world where summers span decades and winters can last a lifetime. From the scheming south and the savage eastern lands, to the frozen north and ancient Wall that protects the realm from the mysterious darkness beyond, the powerful families of the Seven Kingdoms are locked in a battle for the Iron Throne. This is a story of duplicity and treachery, nobility and honor, conquest and triumph. In the <strong><em>\"Game of Thrones\"</em></strong>, you either win or you die.</p>",
+                                "updated": 1463497476,
+                                "_links": {
+                                    "self": {
+                                        "href": "http://api.tvmaze.com/shows/82"
+                                    },
+                                    "previousepisode": {
+                                        "href": "http://api.tvmaze.com/episodes/664674"
+                                    },
+                                    "nextepisode": {
+                                        "href": "http://api.tvmaze.com/episodes/664675"
+                                    }
+                                }
+                            }
+                            </div>
+                            <br>
+                            From this text, we know what kind of information we can request. We can get this information and display it on our website.
+                            <br>
+                            Here, I'll demonstrate a call to retrieve and display the following pieces of information:
+                            <ul>
+                                <li>Show Name</li>
+                                <li>Network Name</li>
+                                <li>Summary</li>
+                            </ul>
+                            <br>
+                            <p data-height="292" data-theme-id="0" data-slug-hash="MydVKj" data-default-tab="js" data-user="bennemar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/bennemar/pen/MydVKj/">URL API Call</a> by Mariam (<a href="http://codepen.io/bennemar">@bennemar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <br>
+                            Looking at the JavaScript, you can see that I assigned elements in my HTML to the API response pieces I wanted. For example, to get the Network Name, I had to look further than the response. I had to go through the response and then the network Object in order to attain the network name, HBO: <code>response.network.name;</code>. I then simply set the HTML element I created with the <code>id = network</code> to the network name I got from the response.
+                            <br>
+                            Now we know how to figure out what kind of information an API Call can give us and how to get the information we want. We've used the <code>singlesearch/shows</code> feature. Let's explore the <code>search/shows</code> feature and compare the two.
+                        </p>
+                        <h3>A General Search</h3>
+                        <p>
+                            Let's see if we can get the same information from a general search using <code>search/shows</code>.
+                            <br>
+                            <p data-height="265" data-theme-id="0" data-slug-hash="LNodgX" data-default-tab="js" data-user="bennemar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/bennemar/pen/LNodgX/">LNodgX</a> by Mariam (<a href="http://codepen.io/bennemar">@bennemar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <br>
+                            If you look at the JavaScript, you'll see that the <code>response</code> returns as an array of Objects. Therefore, you need to determine which element of the array you want to return. This is what it looks like: <code>response[0].show.name</code>. Thankfully, this feature filters the response in order of relevance so our search is first as long as there are no typos and no other shows duplicating the name.
+                            <br>
+                            So we know we can get the same result as a <code>singlesearch/shows</code>, but that it will take more work. You could set up a loop to check whether the show name returned is exactly the same as the one you searched. But since TVMaze provides us with <code>singlesearch/shows</code>, we'll keep <code>search/shows</code> for general searches.
+                        </p>
+                        <h3>Pros And Cons</h3>
+                        <p>
+                            There are pros and cons to both of these search types. The <code>singlesearch/shows</code> is great if you know exactly what show you're looking for. You don't have to search through a huge amount of information to get to the result you want. This is the search we'll be using for the rest of this guide.
+                            <br>
+                            However, the <code>singlesearch/shows</code> is not what you want to use when displaying results for a user search. This is because often times, users will not know what they want or need to the specificity that the single search entails. This is where the <code>search/shows</code> feature becomes more useful.
+                            <br>
+                            It's important to think about the use of your website or application when putting it together. You'll want to make it easy for the user to get what they want on the first try. 
+                        </p>
+                        <h3>Expanding Our Search</h3>
+                        <p>
+                            Now we know how to complete a search for a show and get some information about that show. But recall that we want to get a list of episodes for that show and when they will air. To do this, we will have to expand our search to include multiple searches. We'll start looking at that in the next section.
+                        </p>
+                    </div>
+                    <nav>
+                      <ul class="pager">
+                        <li class="previous"><a href="http://52.25.91.135:3080/start"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                        <li class="next"><a href="http://52.25.91.135:3080/episodeList">Next <span aria-hidden="true">&rarr;</span></a></li>
+                      </ul>
+                    </nav>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

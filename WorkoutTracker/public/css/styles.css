@@ -1,0 +1,13 @@
+/* Format the width of the form field entries */
+#insert-name {
+    width: 15em;
+}
+
+#insert-reps,
+#insert-weight {
+    width: 6em;
+}
+
+#insert-date {
+    width: 13em;
+}

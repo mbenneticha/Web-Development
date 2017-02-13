@@ -1,0 +1,38 @@
+tbody tr:nth-child(odd) td   { background-color:lightpink; }
+tbody tr:nth-child(even) td   { background-color:lightblue;}
+thead tr th { background-color:white}
+tfoot tr th { background-color:white}
+
+table{
+    border-style:solid;
+}
+th, td{
+    border-style:solid;
+}
+
+.outer-content{
+    background-color:pink;
+    width: 75%;
+    height: 3em;
+    margin-top: 20px;
+    float: left;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-content{
+    background-color: lightblue;
+    width: 75%;
+    height: 1em;
+    align-self: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+  margin-top: 95px;
+  background-color: lightgreen;
+  color: teal;
+  font-family: Arial, Helvetica, sans-serif;
+}

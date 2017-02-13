@@ -1,0 +1,29 @@
+<h1>{{this.type}} Request Received</h1>
+
+<!-- Print out query items -->
+<div class = "first">
+	{{#if qParams}}
+		<h3>Received in URL:</h3>
+		<ul>
+		  {{#each qParams}}
+		    <li>{{this.name}}: {{this.value}}
+		  {{/each}}
+		</ul>
+	{{else}}
+		<p>No query string has been submitted.</p>
+	{{/if}}
+</div>
+
+<!--Print out Post items-->
+<div class = "first">
+	{{#if pParams}}
+		<h3>Recieved in Body:</h3>
+		<ul>
+		  {{#each pParams}}
+		    <li>{{this.name}}: {{this.value}}
+		  {{/each}}
+		</ul>
+	{{else}}
+		<p>No post-body has been submitted.</p>
+	{{/if}}
+</div>

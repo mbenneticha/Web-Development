@@ -1,0 +1,86 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="http://52.25.91.135:3080/">
+                    TVMaze API Guide
+                </a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/start">Getting Started</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/showInfo">API: Show Info</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/episodeList">API: Episode Listing</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/extra">API: I Want More!</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/pretty">Wrap Up: Final Result</a>
+            </li>
+            <li>
+                <a href="http://52.25.91.135:3080/conclude">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+
+                    <div id="otherAPI">
+                        <h1 id="titleOther">Getting Started</h1>
+                    </div>
+                    <div id="bodyAPI">
+                        <h3>Why TVMaze API?</h3>
+                        <p>
+                            The TVMaze API caught my interest because I've always found myself Googling the air dates of upcoming episodes of <i>this</i> show or <i>that</i> one. And wouldn't it be amazing to create your own kind of show site? Where you can look up whatever information you were interested in finding. No more searching through a plethora of useless links! Besides, TVMaze's documentation is minimal and could use an additional How-To Guide.
+                        </p>
+                        <h3>In This Section</h3>
+                        <p>
+                            What you'll learn to do here is retrieve some show information, including episode lists and character information. There's plenty more to do, but this will give you the tools to keep going on your own. Maybe you'll create your own database!
+                        </p>
+                        <h3>What Is An API?</h3>
+                        <p>
+                            An API is an Application Program Interface. It is basically the system a computer and server use to talk to one another and request information. You can think of it as a toolbox. It's there give your website some power and to make it useful to the user. With API's, you can connect to a pre-existing database and allow searching through that database from your website. You'll understand more as we go on. 
+                        </p>
+                        <h3>First Things First</h3>
+                        <p>
+                            The first steps to take when starting to use any API is to read through the documentation. Here is the <link href="http://www.tvmaze.com/api">documentation</link> for the TVMaze API. You'll need to determine if an <code>api-Key</code> is necessary. If so, you'll need to register to get one. TVMaze does not require an api-Key. <br><br>
+                            So, our next step is to decide what we want to do with the options available to us with the API. Let's go back to our original problem: trying to find the air dates of upcoming episodes of a certain show. <br><br>
+                            To get to this point, we'll need to complete a Show Search. Through TVMaze, we can conduct a general show search which returns a list of shows that match the keyword. Or we can conduct a single search to return only one show: the one we are looking for. <br><br>
+                            We'll go through both of these kinds of searches to see what kinds of results we can get.
+                        </p>
+                        <h3>What's In an API Call?</h3>
+                        <p>
+                            To get started, let's see what an API call gives us. Plug this call in the <b>JSONLint</b> box below and see what it gives back: <br><code>http://api.tvmaze.com/singlesearch/shows?q=game%20of%20thrones</code>.<br><br>
+                            <embed id="jsonLint" src="http://jsonlint.com/" width=100%>
+                            <br><br>
+                            It gives us information about the show. We'll see how these pieces can be put together to make something meaningful in the next section. We'll also try out some different calls.
+                        </p>
+                    </div>
+                    <nav>
+                      <ul class="pager">
+                        <li class="previous"><a href="http://52.25.91.135:3080/"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                        <li class="next"><a href="http://52.25.91.135:3080/showInfo">Next <span aria-hidden="true">&rarr;</span></a></li>
+                      </ul>
+                    </nav>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

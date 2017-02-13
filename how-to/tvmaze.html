@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+  	<title>TVMaze API How-To Guide</title>
+  	<script type="text/javascript" src="tvmaze.js"></script>
+  </head>
+  <body>
+  	<form>
+  	  <fieldset>
+  	  	<legend>Get a list of episodes for your favorite show</legend>
+  	  	<label for ="showName">Favorite Show:
+  	  		<input type = "text" name = "showName" id="showName">
+  	  	</label>
+  	  	<input type = "submit" id="submitShow">
+  	  </fieldset>
+
+
+  	<h2>OR</h2>
+  	  <fieldset>
+  	  	<legend>Find out what other shows your favorite actor is in</legend>
+  	  	<label for ="showChar">Favorite Actor:
+  	  		<input type = "text" name = "showChar" id="showChar">
+  	  	</label>
+  	  	<input type = "submit" id="submitChar">
+  	  </fieldset>
+      
+
+  	</form>
+  	<div>
+      <h2>Your Results:</h2>
+      <div>
+        <span id = "showImage"></span>
+        <span id = "actorImage"></span>
+      </div>
+      <ul>
+        <li><span><b>Show Name: </b></span><span id="shoName"></span></li>
+        <li><span><b>Main Character: </b></span><span id="character"></span></li>
+        <li><span><b>Actor Name: </b></span><span id="person"></span></li>
+        <li><span><b>Description: </b></span><span id="summary"></span></li>
+      </ul>
+    </div>
+    <div>
+      <table style="width:100%" id="myTable">
+        <thead>
+          
+        </thead>
+        <tbody>
+          <tr>
+
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </body>
+</html>
