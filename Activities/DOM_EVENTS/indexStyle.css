@@ -1,0 +1,29 @@
+/************************
+* Author: Mariam Ben-Neticha
+* Course: CS 290
+* HW Assignment: DOM and Events
+* Date: 4.26.16
+* File Name: indexStyle.css
+* Related Files: script.js, index.html
+*************************/
+
+thead tr th { background-color:mistyrose;}
+tbody tr td   { background-color:palevioletred; }
+
+table{
+    border-width: 4px;
+    border-style:solid;
+    border-color: black;
+    background-color: oldlace;
+}
+th{
+    border-width: 3px;
+    border-style:solid;
+    border-color: plum;
+}
+
+td{
+  border-width: 2px;
+    border-style:solid;
+    border-color: purple;
+}
